@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WinningNumbers>
+	<game>
+		<name>ONTARIO 49</name>
+		<drawDate>2010-09-29</drawDate>
+		<regular>06,07,20,25,30,34</regular>
+		<bonus>23</bonus>
+		<encore>0372827</encore>
+		<jackpot/>
+		<nextdrawDate/>
+	</game>
+	<game>
+		<name>LOTTO MAX</name>
+		<drawDate>2010-09-24</drawDate>
+		<regular>09,22,25,30,31,39,42</regular>
+		<bonus>19</bonus>
+		<encore>5579381</encore>
+		<jackpot>15000000</jackpot>
+		<nextdrawDate>2010-10-01</nextdrawDate>
+	</game>
+	<game>
+		<name>DAILY KENO</name>
+		<drawDate>2010-09-30</drawDate>
+		<regular>02,04,08,21,25,31,34,35,36,37,38,39,40,42,43,44,51,58,63,68</regular>
+		<encore>4987940</encore>
+		<jackpot/>
+		<nextdrawDate/>
+	</game>
+	<game>
+		<name>LOTTARIO</name>
+		<drawDate>2010-09-25</drawDate>
+		<regular>09,27,29,32,33,45</regular>
+		<bonus>26</bonus>
+		<earlyBird>22,25,26,27</earlyBird>
+		<encore>1353428</encore>
+		<jackpot>250000</jackpot>
+		<nextdrawDate>2010-10-02</nextdrawDate>
+	</game>
+	<game>
+		<name>PICK 3</name>
+		<drawDate>2010-09-30</drawDate>
+		<regular>0,8,7</regular>
+		<encore>4987940</encore>
+		<jackpot/>
+		<nextdrawDate/>
+	</game>
+	<game>
+		<name>LOTTO 6/49</name>
+		<drawDate>2010-09-29</drawDate>
+		<regular>01,07,19,31,35,44</regular>
+		<bonus>36</bonus>
+		<encore>0372827</encore>
+		<jackpot>7000000</jackpot>
+		<nextdrawDate>2010-10-02</nextdrawDate>
+	</game>
+	<game>
+		<name>SUPER 7</name>
+		<drawDate>2009-09-18</drawDate>
+		<regular>05,08,10,13,22,36,47</regular>
+		<bonus>38</bonus>
+		<encore>0117216</encore>
+		<jackpot/>
+		<nextdrawDate/>
+	</game>
+	<game>
+		<name>PICK 4</name>
+		<drawDate>2010-09-30</drawDate>
+		<regular>2,5,8,0</regular>
+		<encore>4987940</encore>
+		<jackpot/>
+		<nextdrawDate/>
+	</game>
+	<game>
+		<name>PAYDAY</name>
+		<drawDate>2010-06-10</drawDate>
+		<regular>16,31,49,56</regular>
+		<encore>5616097</encore>
+		<jackpot/>
+		<nextdrawDate/>
+	</game>
+	<game>
+		<name>POKER LOTTO</name>
+		<drawDate>2010-09-30</drawDate>
+		<regular>KD,3C,AS,2C,8C</regular>
+		<encore/>
+		<jackpot/>
+		<nextdrawDate/>
+	</game>
+</WinningNumbers>

@@ -1,0 +1,45 @@
+#page 'bc', :use => 'BC', :feed => :bc, :template => 'common/landing-page'
+
+# TODO
+# :ignore => true, only use this page for structure, Use when only the child page should be processed
+# :defer => true, queue to be processed after other page generation has completed
+# template, set the template to use for all following page calls, can be overridden
+
+# feeds({
+#   :test => "test-feeds/lotto.xml",
+#   :balls => "balls-feeds/maigc.xml"
+# })
+
+feed :lotto => "/Users/brodie/projects/oven2/test-feeds/lotto.xml"
+
+generator('news-item', {
+  :feed => :lotto, 
+  :selector => '/WinningNumbers/game', 
+  :template => 'news/news-item',
+  :variables => [
+    [:name, 'name/text()'],
+    [:drawdate, 'drawDate/text()'],
+  ]
+})
+
+generator('names', 'news-item', {
+  :template => :none
+  #TODO: allow additional variables [merge?]
+})
+
+page '/', defer:true, use:'Static', name:'magic', template:'shared/basic'
+
+news_page_data = {
+  use:'news',
+  template:'shared/basic',
+  :generators => ['names', 'news-item']
+}
+
+page 'news', news_page_data do
+  #page 'local', news_page_data
+  #page 'national', news_page_data
+end
+
+
+#dumpfeeds
+#dumptree
