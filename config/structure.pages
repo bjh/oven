@@ -7,6 +7,8 @@
 # TODO
 # :ignore => true, only use this page for structure, Use when only the child page(s) should be processed
 
+# FEEDS ------------------------------------------------------------------
+
 # feeds({
 #   :test => "test-feeds/lotto.xml",
 #   :balls => "balls-feeds/maigc.xml"
@@ -15,7 +17,9 @@
 feed :lotto => "/Users/brodie/projects/oven2/test-feeds/lotto.xml"
 feed :lotto2 => "/Users/brodie/projects/oven2/test-feeds/lotto2.xml"
 
-generator('news-item', {
+# GENERATORS -------------------------------------------------------------
+
+generator('kitchen-sink', {
   :feed => :lotto, 
   :selector => '/WinningNumbers/game', 
   :template => 'news/news-item',
@@ -25,27 +29,34 @@ generator('news-item', {
   ]
 })
 
-generator('names', 'news-item', {
+generator('news-item', :inherits => 'kitchen-sink')
+
+generator('names', {
+  :inherits => 'kitchen-sink',
   :template => :none
   #TODO: allow additional variables [merge?]
 })
 
-generator('lotto-names', 'news-item', {
+generator('lotto-names', {
+  :inherits => 'kitchen-sink',
   :template => :none,
   :feed => :lotto2
 })
-generator('lotto-items', 'news-item', {
+generator('lotto-items', {
+  :inherits => 'kitchen-sink',
   :feed => :lotto2
 })
 
 
+# PAGES ------------------------------------------------------------------
 
 page '/', defer:true, use:'Static', name:'magic', template:'shared/basic'
 
 news_page_data = {
   use:'news',
   template:'news/index',
-  :generators => ['names', 'news-item']
+  :generators => ['names', 'news-item'],
+  :passthrough => "this string gets passed through the system"
 }
 
 page 'news', news_page_data do

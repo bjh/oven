@@ -1,5 +1,6 @@
 
 module Oven
+  # process the data created by the Pages DSL
   class SiteEngine
     def initialize(structure_tree)
       @tree = structure_tree
@@ -23,7 +24,7 @@ module Oven
         data = page.content
             
         if data.has_key?(:defer)
-          # delete so this only happens once
+          # delete so this test only happens once
           page.content.delete(:defer)
           @deferred.push(page)
         else
@@ -45,6 +46,7 @@ module Oven
           Static.new(data).generate
         end
       rescue => e
+        L::error("generate_page: #{data}")
         L::error(e.backtrace.join("\n"))
       end
     end

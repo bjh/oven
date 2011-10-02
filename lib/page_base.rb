@@ -1,7 +1,7 @@
 
 module Oven
   class PageBase
-    attr_accessor :html
+    #attr_accessor :html
   
     def initialize(options)
       @options = options
@@ -12,7 +12,7 @@ module Oven
   
     # derived classes must implement this
     def generate
-      throw "override me before kittens are hurt!"
+      throw "override me before innocent kittens are hurt!"
     end
   
     def body(content)
@@ -28,7 +28,7 @@ module Oven
       content = [header, body, footer].join('')
     
       path = File.join(AppConfig[:output_directory], @options[:path], 'index.html')
-      L::info("WRITING FILE TO: #{path}")
+      #L::info("WRITING FILE TO: #{path}")
       Path.create(File.dirname(path))
       File.open(path, 'w+') { |file| file.write(content) }
     end

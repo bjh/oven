@@ -24,15 +24,16 @@ module Process
       
       article = Article.new(
         :template => article_template,
-        :path => article_path
+        :path => article_path,
+        # used in the template header
+        :name => names[n]
       )
       article.body(article_content)
       article.write()
     end
     
-    data = {:links => names}
     template = Oven::Template::get(@options[:template])
-    body(template.result(Oven::Template::bind(data).get_binding()))
+    body(template.result(binding()))
     write()
   end
 end

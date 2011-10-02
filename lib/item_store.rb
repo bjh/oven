@@ -17,12 +17,11 @@ module Oven
     end
 
     def put(key, value)
-      L::warn("#{key}, #{value}")
+      #puts("PUT: #{key}, #{value}")
       @store[key.to_sym] = value
     end
 
-    def inherit(name, inherits_from, items)
-      
+    def inherit(name, inherits_from, items)      
       item = get(inherits_from)
       
       if item == inherits_from

@@ -16,7 +16,8 @@ module Oven
       begin
         instance_eval(File.open(script).read)
       rescue => e
-        L::error("PAGES: #{e.backtrace.join("\n")}")
+        L::error("PAGES: #{e}")
+        L::error("#{e.backtrace.join("\n")}")
       end
     end
 
@@ -47,17 +48,17 @@ private
       # @root.preordered_each { |node| puts("#{node.name}") }
     end
     
-    def generator(name, inherits=false, options)
+    def generator(name, options)
       begin
-        if inherits
-          #@generators[name] = @generators[inherits].merge(options)
+        if options.has_key?(:inherits)
+          inherits = options.delete(:inherits)
           GeneratorStore.inherit(name, inherits, options)
         else
-          #@generators[name] = options
           GeneratorStore.put(name, options)
         end
       rescue => e
         L::error("Pages.generator: #{e}")
+        L::error("#{e.backtrace.join("\n")}")
       end
     end
     
