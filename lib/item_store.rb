@@ -17,6 +17,7 @@ module Oven
     end
 
     def put(key, value)
+      L::warn("#{key}, #{value}")
       @store[key.to_sym] = value
     end
 

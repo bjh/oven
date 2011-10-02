@@ -18,7 +18,7 @@ module Oven
     end
     
     def initialize(feed, selector, template, variables, options={})
-      #L::info("Generator.ctor(#{feed}, #{selector}, #{template}, #{variables})")
+      #L::info("Generator.ctor(#{feed}, #{selector}, #{template}, #{variables})")
       @feed = Oven::FeedStore.get(feed)
       @selector = selector
       @template = template

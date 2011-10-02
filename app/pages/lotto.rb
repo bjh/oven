@@ -1,6 +1,5 @@
 
-
-class News < Oven::PageBase
+class Lotto < Oven::PageBase
   # mixin the Process.run() function
   include Process
   
@@ -10,10 +9,10 @@ class News < Oven::PageBase
   
   def generate
     begin
-      run('names', 'news-item', 'news-item')
+      run('lotto-names', 'lotto-items', 'news-item')
     rescue => e
-      L::error("News.generate: #{e}")
-      #L::error(e.backtrace.join("\n"))
+      L::error("Lotto.generate: #{e}")
+      L::error(e.backtrace.join("\n"))
     end
   end
 end

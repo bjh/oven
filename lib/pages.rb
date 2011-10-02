@@ -4,19 +4,15 @@ module Oven
   FeedStore = Oven::ItemStore.new
   GeneratorStore = Oven::ItemStore.new
   
-  #class GeneratorNotFound < Exception; end
-  
   class Pages
     ROOT = '/'
     attr_reader :tree
     
     def initialize(script)
       @path = []
-      #@feeds = {}
-      #@generators = {}
       @tree = Tree::TreeNode.new("/", {})
       @root = @tree
-            
+         
       begin
         instance_eval(File.open(script).read)
       rescue => e
@@ -73,9 +69,6 @@ private
         name:path
       }.merge(options)
       
-      #options = solidify_feed(options)
-      #options = solidify_generators(options)
-
       # ROOT is special, like cousin Reggie
       if path == Pages::ROOT
         @root.content = options
@@ -91,33 +84,5 @@ private
       @tree = current if current
       @path.pop()
     end
-    
-    # convert convert each generator description into an actual generator
-    # def solidify_generators(options)
-    #       generators = {}
-    #       
-    #       if options[:generators]
-    #         options[:generators].each do |name|
-    #           g = @generators[name]
-    #           
-    #           if g.nil?
-    #             raise GeneratorNotFound.new, "'#{name}' generator not found"
-    #           end
-    #           
-    #           begin
-    #             generators[name] = Oven::Generator.new(
-    #               g[:feed], 
-    #               g[:selector], 
-    #               g[:template], 
-    #               g[:variables]
-    #             )
-    #           rescue => e
-    #             L::error("solidify_generators: #{e}")
-    #           end
-    #         end
-    #         options[:generators] = generators
-    #       end
-    #       options
-    #     end
   end
 end

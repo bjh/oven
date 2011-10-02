@@ -1,9 +1,11 @@
 #page 'bc', :use => 'BC', :feed => :bc, :template => 'common/landing-page'
 
-# TODO
-# :ignore => true, only use this page for structure, Use when only the child page should be processed
+# options
 # :defer => true, queue to be processed after other page generation has completed
-# template, set the template to use for all following page calls, can be overridden
+# :use => Class file under app/pages to use for rendering the page, default is to use the page name for this lookup
+
+# TODO
+# :ignore => true, only use this page for structure, Use when only the child page(s) should be processed
 
 # feeds({
 #   :test => "test-feeds/lotto.xml",
@@ -11,6 +13,7 @@
 # })
 
 feed :lotto => "/Users/brodie/projects/oven2/test-feeds/lotto.xml"
+feed :lotto2 => "/Users/brodie/projects/oven2/test-feeds/lotto2.xml"
 
 generator('news-item', {
   :feed => :lotto, 
@@ -27,11 +30,21 @@ generator('names', 'news-item', {
   #TODO: allow additional variables [merge?]
 })
 
+generator('lotto-names', 'news-item', {
+  :template => :none,
+  :feed => :lotto2
+})
+generator('lotto-items', 'news-item', {
+  :feed => :lotto2
+})
+
+
+
 page '/', defer:true, use:'Static', name:'magic', template:'shared/basic'
 
 news_page_data = {
   use:'news',
-  template:'shared/basic',
+  template:'news/index',
   :generators => ['names', 'news-item']
 }
 
@@ -40,6 +53,7 @@ page 'news', news_page_data do
   #page 'national', news_page_data
 end
 
+page 'lotto', :template => 'news/index', :generators => ['names', 'news-item']
 
 #dumpfeeds
 #dumptree

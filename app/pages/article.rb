@@ -1,6 +1,5 @@
 
-# this just renders out a static page i.e. not data binding
-class Static < Oven::PageBase
+class Article < Oven::PageBase
   def initialize(page_data)
     super(page_data)
   end
@@ -11,3 +10,4 @@ class Static < Oven::PageBase
     write()
   end
 end
+
