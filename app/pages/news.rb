@@ -12,8 +12,6 @@ class News < Oven::PageBase
     begin
       # run(name_generator, item_generator, article_template)
       run('names', 'news-item', 'news-item')
-      
-      #puts "passthrough: #{@options[:passthrough]}"
     rescue => e
       L::error("News.generate: #{e}")
       #L::error(e.backtrace.join("\n"))

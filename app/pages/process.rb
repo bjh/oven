@@ -17,6 +17,8 @@ module Process
       articles << content
     end
     
+    Oven::StringStore.put(item_generator, articles.join("\n"))
+    
     # create each article page
     (0...files.size).each do |n|
       article_path = files[n]

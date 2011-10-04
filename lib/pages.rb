@@ -4,6 +4,7 @@ module Oven
   FeedStore = Oven::ItemStore.new
   GeneratorStore = Oven::ItemStore.new
   FilterStore = Oven::ItemStore.new
+  StringStore = Oven::ItemStore.new
   
   # put that frog down! bad monkey....
   class ::String

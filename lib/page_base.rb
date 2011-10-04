@@ -1,6 +1,6 @@
 
 module Oven
-  class PageBase  
+  class PageBase
     def initialize(options)
       @options = options
       @header = options[:header] || AppConfig[:header]

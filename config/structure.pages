@@ -62,7 +62,7 @@ generator('lotto-items', {
 
 # PAGES ------------------------------------------------------------------
 
-page '/', defer:true, use:'Static', name:'magic', template:'shared/basic'
+page '/', defer:true, use:'Home', name:'magic', template:'shared/basic'
 
 news_page_data = {
   :use => 'news',

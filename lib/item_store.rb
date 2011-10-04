@@ -12,7 +12,7 @@ module Oven
       if @store.has_key?(key.to_sym)
         return @store[key.to_sym]
       else
-        L::warn("ItemStore.get(#{key}) not found, passing through key")
+        L::debug("ItemStore.get(#{key}) not found, passing key through.")
         return key
       end
     end
@@ -36,7 +36,7 @@ module Oven
     
     # expects a hash of items
     def merge(items)
-      L::info("ItemStore.merge(#{items.inspect})")
+      #L::info("ItemStore.merge(#{items.inspect})")
       if not items.is_a?(Hash)
         raise TypeError.new, "trying to merge something that is NOT a Hash"
       end
