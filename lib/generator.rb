@@ -5,7 +5,7 @@ module Oven
     def self.create(name, options)
       if options.has_key?(:inherits)
         # this is a bit verbose but there was some Hash clobbering happening
-        # when inheriting rules
+        # when inheriting rules, cloning is happening in the inherit_rules method
         inherits = options.delete(:inherits)        
         existing = GeneratorStore.get(inherits)
         incoming = options
@@ -88,7 +88,6 @@ module Oven
       rules = Marshal::load(Marshal.dump(existing))
 
       (0...rules.size).each do |n|
-        #L::info("rule" + rules[n].first.inspect)
         overwrite = incoming.select do |incoming_rule|
           # is there a matching incoming rule to overwrite?
           incoming_rule[0] == rules[n].first

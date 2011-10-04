@@ -6,7 +6,6 @@
 
 # TODO
 # :ignore => true, only use this page for structure, Use when only the child page(s) should be processed
-# add ability to add custom functions/blocks to the generators to process variables even more. a/k/a Filters
 # FEEDS ------------------------------------------------------------------
 
 # feeds({

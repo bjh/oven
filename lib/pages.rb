@@ -59,23 +59,11 @@ private
     
     def filter(name, options={})
       #L::info("filter: #{name}, #{options}")
-      if not options.has_key?(:use)
-        raise ArgumentError.new, "Pages.filter not told what to :use"
-      else
-        if options[:use].is_a?(String)
-          klass = options[:use]
-        
-          if Object.const_defined?(klass)
-            filter = Object.const_get(klass)
-            FilterStore.put(name, filter.new)
-          else
-            L::error("filter: #{name}, no corresponding class file found.")
-          end        
-        elsif options[:use].is_a?(Proc)
-          FilterStore.put(name, options[:use])
-        else
-          L::error("filter: #{name}, cannot :use #{options[:use]} as a Filter.")
-        end
+      begin
+        Filter::create(name, options)
+      rescue => e
+        L::error("Pages.filter: #{e}")
+        L::error("#{e.backtrace.join("\n")}")
       end
     end
     
