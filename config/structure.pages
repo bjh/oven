@@ -13,8 +13,9 @@
 #   :balls => "balls-feeds/maigc.xml"
 # })
 
-feed :lotto => "/Users/brodie/projects/oven2/test-feeds/lotto.xml"
-feed :lotto2 => "/Users/brodie/projects/oven2/test-feeds/lotto2.xml"
+# use {{local}} to insert the app path
+feed :lotto => ~"test-feeds/lotto.xml"
+feed :lotto2 => ~"test-feeds/lotto2.xml"
 
 # FILTERS ----------------------------------------------------------------
 
@@ -30,7 +31,7 @@ filter :reverse, :use => lambda {|text| text.reverse}
 generator('kitchen-sink', {
   :feed => :lotto, 
   :template => 'news/news-item',
-  :selector => '/WinningNumbers/game', 
+  :selector => '/WinningNumbers/game',
   :rules => [
     [:name, 'name/text()'],
     [:drawdate, 'drawDate/text()'],
@@ -42,7 +43,6 @@ generator('news-item', :inherits => 'kitchen-sink')
 generator('names', {
   :inherits => 'kitchen-sink',
   :template => :none
-  #TODO: allow additional variables [merge?]
 })
 
 generator('lotto-names', {
@@ -80,5 +80,5 @@ page 'lotto', :template => 'news/index', :generators => ['names', 'news-item']
 
 #dumpfeeds
 #dumptree
-dumpfilters
-dumpgenerators
+#dumpfilters
+#dumpgenerators

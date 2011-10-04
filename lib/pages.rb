@@ -5,6 +5,22 @@ module Oven
   GeneratorStore = Oven::ItemStore.new
   FilterStore = Oven::ItemStore.new
   
+  # put that frog down! bad monkey....
+  class ::String
+    # allow a shortcut for the application root path in the DSL
+    # example: ~"test-feeds/lotto.xml"
+    # override unary ~ for strings
+    def ~@
+      AppConfig.root_path_plus(self)
+    end
+    
+    # clean up after the bad monkey
+    def self.spank_monkey
+      undef_method(:~@)
+    end
+  end
+  
+  
   class Pages
     ROOT = '/'
     attr_reader :tree
@@ -22,6 +38,9 @@ module Oven
         L::error("PAGES: #{e}")
         L::error("#{e.backtrace.join("\n")}")
       end
+      
+      # we are done, spank the monkeys
+      String::spank_monkey()
     end
 
 private

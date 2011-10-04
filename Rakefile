@@ -16,6 +16,14 @@ task :run do
   end
 end
 
+desc "clean generated site"
+task :clean do
+  $:.unshift(File.join(File.dirname(__FILE__), 'config'))
+  require 'config'
+  
+  sh %{rm -rf #{AppConfig[:output_directory]}}
+end
+
 desc "runs rspec:all"
 task :test do
   Rake::Task['rspec:all'].invoke()
