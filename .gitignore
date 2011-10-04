@@ -24,3 +24,4 @@ config/database.yml
 # ECLIPSE - generated GUI files
 *R.java
 workspace/.metadata/*
+crap.rb
