@@ -6,7 +6,7 @@
 
 # TODO
 # :ignore => true, only use this page for structure, Use when only the child page(s) should be processed
-
+# add ability to add custom functions/blocks to the generators to process variables even more. a/k/a Filters
 # FEEDS ------------------------------------------------------------------
 
 # feeds({
@@ -17,13 +17,22 @@
 feed :lotto => "/Users/brodie/projects/oven2/test-feeds/lotto.xml"
 feed :lotto2 => "/Users/brodie/projects/oven2/test-feeds/lotto2.xml"
 
+# FILTERS ----------------------------------------------------------------
+
+#filters_path('app/filters')
+# use a class that subclasses Oven::Filter
+filter :trim, :use => 'TrimFilter'
+# just pass in a callable
+filter :tolower, :use => lambda {|text| text.downcase}
+filter :reverse, :use => lambda {|text| text.reverse}
+
 # GENERATORS -------------------------------------------------------------
 
 generator('kitchen-sink', {
   :feed => :lotto, 
-  :selector => '/WinningNumbers/game', 
   :template => 'news/news-item',
-  :variables => [
+  :selector => '/WinningNumbers/game', 
+  :rules => [
     [:name, 'name/text()'],
     [:drawdate, 'drawDate/text()'],
   ]
@@ -42,9 +51,13 @@ generator('lotto-names', {
   :template => :none,
   :feed => :lotto2
 })
+
 generator('lotto-items', {
   :inherits => 'kitchen-sink',
-  :feed => :lotto2
+  :feed => :lotto2,
+  :rules => [
+    [:name, 'name/text()', :trim, :tolower, :reverse]
+  ]  
 })
 
 
@@ -53,8 +66,8 @@ generator('lotto-items', {
 page '/', defer:true, use:'Static', name:'magic', template:'shared/basic'
 
 news_page_data = {
-  use:'news',
-  template:'news/index',
+  :use => 'news',
+  :template => 'news/index',
   :generators => ['names', 'news-item'],
   :passthrough => "this string gets passed through the system"
 }
@@ -68,3 +81,5 @@ page 'lotto', :template => 'news/index', :generators => ['names', 'news-item']
 
 #dumpfeeds
 #dumptree
+dumpfilters
+dumpgenerators

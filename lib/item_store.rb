@@ -1,6 +1,7 @@
 
 
 module Oven
+  # a generic container used by feeds and generators
   class ItemStore
     def initialize
       @store = {}
@@ -17,10 +18,12 @@ module Oven
     end
 
     def put(key, value)
-      #puts("PUT: #{key}, #{value}")
+      #L::info("ItemStore.put(#{key}, #{value.inspect})")
       @store[key.to_sym] = value
     end
 
+    # inherits traits/values from an existing item in the store
+    # basically copy/merge into a new item in the store
     def inherit(name, inherits_from, items)      
       item = get(inherits_from)
       
@@ -33,7 +36,6 @@ module Oven
     
     # expects a hash of items
     def merge(items)
-      #puts "ItemStore.merge(#{items})"
       if not items.is_a?(Hash)
         raise TypeError.new, "trying to merge something that is NOT a Hash"
       end
@@ -44,11 +46,9 @@ module Oven
     end
 
     def to_s
-      output = []
-      @store.each_pair do |k, v|
-        output << "#{k} #{v}"
-      end
-      output.join("\n")
+      @store.each_pair.collect do |k, v|
+        "#{k} #{v}"
+      end.join("\n\n")
     end
   end
 end

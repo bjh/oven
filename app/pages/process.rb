@@ -6,14 +6,14 @@ module Process
     files = []
     names = []
     
-    Oven::Generator.create(name_generator).run do |content|
+    Oven::Generator[name_generator].run do |content|
       name = Oven::Path.safe(content.name)
       files << Oven::Path.slash([@options[:path], name, '/'].join('/'))
       names << name
     end
     
     articles = []
-    Oven::Generator.create(item_generator).run do |content|
+    Oven::Generator[item_generator].run do |content|
       articles << content
     end
     

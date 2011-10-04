@@ -3,6 +3,7 @@ module Oven
   # parser/engine for the DSL
   FeedStore = Oven::ItemStore.new
   GeneratorStore = Oven::ItemStore.new
+  FilterStore = Oven::ItemStore.new
   
   class Pages
     ROOT = '/'
@@ -14,6 +15,8 @@ module Oven
       @root = @tree
          
       begin
+        # the magic happens right here people....
+        # so do a lot of the exceptions ;)
         instance_eval(File.open(script).read)
       rescue => e
         L::error("PAGES: #{e}")
@@ -31,31 +34,54 @@ private
     end
     
     def dumpfeeds
-      puts '-' * 50
+      puts '-' * 60
       puts '-FEEDS-'
       puts FeedStore.to_s
     end
     
     def dumptree
-      #puts "#{@feeds}"
+      puts '-' * 60
+      puts '-PAGE STUCTURE-'
       @root.print_tree 
-      # puts '-' * 60
-      # @root.each { |node| puts("#{node.name} > #{node.content}") }
-      # @root.each { |node| puts("#{node.name}") }
-      # puts '-' * 60
-      # @root.breadth_each { |node| puts("#{node.name}") }
-      # puts '-' * 60
-      # @root.preordered_each { |node| puts("#{node.name}") }
+    end
+    
+    def dumpfilters
+      puts '-' * 60
+      puts '-FILTERS-'
+      puts FilterStore.to_s
+    end
+    
+    def dumpgenerators
+      puts '-' * 60
+      puts '-GENERATORS-'
+      puts GeneratorStore.to_s
+    end
+    
+    def filter(name, options={})
+      #L::info("filter: #{name}, #{options}")
+      if not options.has_key?(:use)
+        raise ArgumentError.new, "Pages.filter not told what to :use"
+      else
+        if options[:use].is_a?(String)
+          klass = options[:use]
+        
+          if Object.const_defined?(klass)
+            filter = Object.const_get(klass)
+            FilterStore.put(name, filter.new)
+          else
+            L::error("filter: #{name}, no corresponding class file found.")
+          end        
+        elsif options[:use].is_a?(Proc)
+          FilterStore.put(name, options[:use])
+        else
+          L::error("filter: #{name}, cannot :use #{options[:use]} as a Filter.")
+        end
+      end
     end
     
     def generator(name, options)
       begin
-        if options.has_key?(:inherits)
-          inherits = options.delete(:inherits)
-          GeneratorStore.inherit(name, inherits, options)
-        else
-          GeneratorStore.put(name, options)
-        end
+        Oven::Generator::create(name, options)
       rescue => e
         L::error("Pages.generator: #{e}")
         L::error("#{e.backtrace.join("\n")}")

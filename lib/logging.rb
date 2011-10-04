@@ -1,22 +1,22 @@
 
 require 'logger'
+
 module Oven
   class Logging
     def self.create()
       logger = Logger.new(STDOUT)
       logger::formatter = proc do |severity, datetime, progname, msg|
         message = "[#{severity.downcase}] #{msg}\n"
-        level = severity.downcase.to_sym
-        
+                
         # :black, :red, :green, :yellow, :blue, :magenta, :cyan, :white, :default
-        case 
-        when level == :error
+        case severity.downcase.to_sym
+        when :error
           message.color(:red)
-        when level == :warn
+        when :warn
           message.color(:yellow)
-        when level == :debug
+        when :debug
           message.color(:green)
-        when level == :info
+        when :info
           message.color(:blue)
         else
           message.color(:defalt)

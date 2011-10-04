@@ -5,6 +5,7 @@ structure: /Users/brodie/projects/oven2/config/structure.pages
 output_directory: /Applications/MAMP/htdocs/oven/
 #cache: cache/
 templates: templates/
+filters: app/filters
 header: shared/header
 footer: shared/footer
 

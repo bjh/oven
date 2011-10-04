@@ -10,6 +10,12 @@ Dir["#{AppConfig[:approot]}app/pages/*.rb"].each do |file|
   require file
 end
 
+# load all the filters
+Dir["#{AppConfig[:approot]}app/filters/*.rb"].each do |file| 
+  require file
+end
+
+
 # rubytree.rubyforge.org
 require 'tree'
 require 'erb'

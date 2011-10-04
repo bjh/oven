@@ -1,8 +1,6 @@
 
 module Oven
-  class PageBase
-    #attr_accessor :html
-  
+  class PageBase  
     def initialize(options)
       @options = options
       @header = options[:header] || AppConfig[:header]
@@ -28,7 +26,7 @@ module Oven
       content = [header, body, footer].join('')
     
       path = File.join(AppConfig[:output_directory], @options[:path], 'index.html')
-      #L::info("WRITING FILE TO: #{path}")
+      #L::info("WRITING PAGE TO: #{path}")
       Path.create(File.dirname(path))
       File.open(path, 'w+') { |file| file.write(content) }
     end
