@@ -1,7 +1,7 @@
 ---
 url: http://localhost:8888/oven/
-approot: /Users/brodie/projects/oven2/
-structure: /Users/brodie/projects/oven2/config/structure.pages
+approot: /Users/brodie/projects/oven/
+structure: /Users/brodie/projects/oven/config/structure.pages
 output_directory: /Applications/MAMP/htdocs/oven/
 templates: templates/
 filters: app/filters

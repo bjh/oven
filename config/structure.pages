@@ -10,7 +10,7 @@
 
 # feeds({
 #   :test => "test-feeds/lotto.xml",
-#   :balls => "balls-feeds/maigc.xml"
+#   :balls => "balls-feeds/magic.xml"
 # })
 
 # use {{local}} to insert the app path
