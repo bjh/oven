@@ -1,9 +1,11 @@
 require 'app_config'
 
-AppConfig.setup do |config|
-  config[:storage_method] = :yaml
-  config[:path] = "#{File.dirname(__FILE__)}/config.yml"
-end
+# AppConfig.setup do |config|
+#   config[:storage_method] = :yaml
+#   config[:path] = "#{File.dirname(__FILE__)}/config.yml"
+# end
+
+AppConfig.setup(:yaml => "#{File.dirname(__FILE__)}/config.yml")
 
 # app specific Config helpers
 def AppConfig.root_path_plus(path, *rest)
