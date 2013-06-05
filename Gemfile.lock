@@ -1,16 +1,20 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    app_config (0.7.1)
-    nokogiri (1.5.0)
-    rainbow (1.1.1)
-    rubytree (0.8.1)
+    bruce-banner (0.1.1)
+    json (1.8.0)
+    nokogiri (1.5.9)
+    rainbow (1.1.4)
+    rubytree (0.8.3)
+      json (>= 1.7.5)
+      structured_warnings (>= 0.1.3)
+    structured_warnings (0.1.4)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  app_config
+  bruce-banner
   nokogiri
   rainbow
   rubytree

@@ -2,7 +2,7 @@
 url: http://localhost:8888/oven/
 approot: /Users/bjh/projects/oven/
 structure: /Users/bjh/projects/oven/config/structure.pages
-output_directory: /Applications/MAMP/htdocs/oven/
+output_directory: /Users/bjh/projects/oven/generated_site
 templates: templates/
 filters: app/filters
 header: shared/header

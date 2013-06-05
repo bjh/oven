@@ -1,11 +1,11 @@
-require 'app_config'
+require 'yaml'
+# require 'app_config'
 
-# AppConfig.setup do |config|
-#   config[:storage_method] = :yaml
-#   config[:path] = "#{File.dirname(__FILE__)}/config.yml"
-# end
+AppConfig = YAML.load(File.open("#{File.dirname(__FILE__)}/config.yml").read)
 
-AppConfig.setup(:yaml => "#{File.dirname(__FILE__)}/config.yml")
+AppConfig.keys.each do |key|
+  AppConfig[(key.to_sym rescue key) || key] = AppConfig.delete(key)
+end
 
 # app specific Config helpers
 def AppConfig.root_path_plus(path, *rest)
