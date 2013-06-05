@@ -25,3 +25,5 @@ config/database.yml
 *R.java
 workspace/.metadata/*
 crap.rb
+generated_site/
+site/
